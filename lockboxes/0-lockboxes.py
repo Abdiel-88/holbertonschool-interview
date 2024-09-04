@@ -1,45 +1,44 @@
 #!/usr/bin/python3
 """
 You have n number of locked boxes in front of you.
-Each box is numbered sequentially from 0 to n - 1
-and each box may contain keys to the other boxes.
+Each box is numbered sequentially from 0 to n - 1.
+Each box may contain keys to other boxes.
 
-Write a method that determines if all the boxes can be opened.
+Write a function that determines if all the boxes can be opened.
     Prototype: def canUnlockAll(boxes)
-    boxes is a list of lists
-    A key with the same number as a box opens that box
-    You can assume all keys will be positive integers
-    There can be keys that do not have boxes
-    The first box boxes[0] is unlocked
-    Return True if all boxes can be opened, else return False
+    - boxes is a list of lists
+    - A key with the same number as a box opens that box
+    - You can assume all keys will be positive integers
+    - Some keys may not correspond to any box
+    - The first box (boxes[0]) is unlocked initially
+    - Return True if all boxes can be opened; otherwise, return False
 """
-
 
 def canUnlockAll(boxes):
     """
-    Determines if all boxes can be opened.
+    Determines if all boxes can be unlocked.
 
     Args:
-        boxes (list of lists): A list where each element is a list of keys
-                                contained in a box. The box at index x has
-                                keys to other boxes.
+        boxes (list of list of int): A list where each sublist contains keys
+                                     to other boxes. The box at index i contains
+                                     keys to the boxes represented by the integers
+                                     in its sublist.
 
     Returns:
-        bool: True if all boxes can be opened, False otherwise.
+        bool: True if every box can be unlocked, False otherwise.
     """
-    n = len(boxes)  # Gives us the total number of boxes.
-    opened = [False] * n  # Bool list that tracks which boxes have been opened
-    opened[0] = True  # True because this is the first box that is unlocked
-    stack = [0]  # Initializes the stack with the first box.
+    n = len(boxes)  # Total number of boxes.
+    opened = [False] * n  # List to keep track of which boxes are opened.
+    opened[0] = True  # The first box is initially unlocked.
+    stack = [0]  # Start with the first box.
 
-    # To explore all of the keys found in the boxes.
+    # Use a stack to perform depth-first search.
     while stack:
-        current_box = stack.pop()  # Assigns the last opened box from stack
-        for key in boxes[current_box]:  # Checks all of the keys in the box.
-            # Check if the key corresponds to a valid unopened box.
-            if 0 <= key < n and not opened[key]:
-                opened[key] = True  # Here we mark the box as opened.
-                stack.append(key)  # Here we add the box to the stack.
+        current_box = stack.pop()  # Get the most recent box.
+        for key in boxes[current_box]:  # Check each key in the current box.
+            if 0 <= key < n and not opened[key]:  # Validate key and box.
+                opened[key] = True  # Mark the box as unlocked.
+                stack.append(key)  # Add the newly unlocked box to the stack.
 
-    # Return True if all of the boxes have been opened, otherwise False.
+    # Return True if all boxes are opened, False otherwise.
     return all(opened)
