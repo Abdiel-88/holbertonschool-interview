@@ -20,6 +20,6 @@ def canUnlockAll(boxes):
             if key < n and not opened_boxes[key]:
                 opened_boxes[key] = True
                 new_keys.extend(boxes[key])  # Add keys from the newly opened box
-        keys = new_keys  # Continue with the new set of keys
+        keys = new_keys  # Continue with the new set of ke
 
     return all(opened_boxes)
