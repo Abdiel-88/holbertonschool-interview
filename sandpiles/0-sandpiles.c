@@ -1,5 +1,9 @@
 #include "sandpiles.h"
 
+/* Forward declarations */
+void print_grid(int grid[3][3]);  // Declare print_grid here
+void topple(int grid[3][3]);      // Declare topple here
+
 /**
  * sandpiles_sum - Computes the sum of two sandpiles and stabilizes them
  * @grid1: First 3x3 grid (result will be stored here)
