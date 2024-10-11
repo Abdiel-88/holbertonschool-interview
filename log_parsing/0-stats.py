@@ -34,6 +34,6 @@ if __name__ == "__main__":
             i += 1
     except KeyboardInterrupt:
         print_stats()
-        sys.exit(0)  # Exit gracefully
+        sys.exit(0)  # Exit gracefully 
 
     print_stats()
