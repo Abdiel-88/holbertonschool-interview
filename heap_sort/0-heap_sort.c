@@ -61,6 +61,6 @@ void heap_sort(int *array, size_t size)
 	{
 		swap(&array[0], &array[end]); /* Move current root to end */
 		print_array(array, size);    /* Print array after swap */
-		sift_down(array, size, 0, end - 1); /* Restore heap property */
+		sift_down(array, size, 0, end - 1); /* Restor git add heap property */
 	}
 }
